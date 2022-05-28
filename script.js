@@ -57,7 +57,7 @@ function showMovies(data,list){
 
 function writeCurr(data){
     const containerEl = document.createElement('div');
-    containerEl.classList.add('container');
+    containerEl.classList.add('curr_container');
     // curr = [data[TOY_WEEK_ORDER[TOY_WEEK_NUM][0]], data[TOY_WEEK_ORDER[TOY_WEEK_NUM][1]]];
     curr = [data[WEEK_ORDER[WEEK_NUM][0]], data[WEEK_ORDER[WEEK_NUM][1]]];
     console.log(curr);
@@ -88,7 +88,7 @@ function writeCurr(data){
 
 function writeMovies(data,list){
     const containerEl = document.createElement('div');
-    containerEl.classList.add('container');
+    containerEl.classList.add('list_container');
     let index = 0;
     data.forEach(movie => {
         const {title, poster_path, vote_average, overview, release_date} = movie;
