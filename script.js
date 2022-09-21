@@ -44,7 +44,7 @@ async function getList(url){
         })
     }
     console.log(dataResults);
-    showMovies(dataResults,1);
+    showMovies(dataResults,WEEK_NUM > WEEK_ORDER.length ? 0 : 1);
 }
 
 function showMovies(data,list){
