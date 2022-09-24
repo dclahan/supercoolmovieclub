@@ -1,23 +1,19 @@
 // TMDB API 
-const TOY_LIST = 8203787;
-const MOVIE_LIST = 8204010;//8203750
+const MOVIE_LIST = 8218973; 
 const API_KEY = 'api_key=47dfcb016e14d1379095405c11c88329';
 const BASE_URL = 'https://api.themoviedb.org/4';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
-// const LIST_URL = BASE_URL + '/list/'+ TOY_LIST +'?' + API_KEY + '&page=';
 const LIST_URL = BASE_URL + '/list/'+ MOVIE_LIST +'?' + API_KEY + '&page=';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 
 const weekInMilliseconds = 7*24*60*60*1000; // == 604800000 ms
 
-const TOY_WEEK_ORDER = [[19, 21], [23, 18], [13, 6], [9, 1], [22, 15], [5, 17], [2, 11], [14, 4], [12, 16], [3, 7], [0, 20], [10, 8]];
-const TOY_START = new Date('2022-04-12T06:00:00.000Z');
-var TOY_WEEK_NUM = Math.floor((Date.now() - TOY_START.valueOf())/weekInMilliseconds);
-
-const WEEK_ORDER = [[19, 12], [1, 20], [6, 14], [31, 11], [24, 16], [37, 22], [33, 15], [13, 26], [40, 7], [5, 39], [41, 18], [21, 8], [36, 47], [48, 0], [23, 45], [28, 50], [34, 2], [17, 25], [10, 44], [55, 49], [35, 56], [59, 51], [58, 53], [3, 29], [27, 38], [32, 46], [4, 30], [54, 43], [9, 57], [42, 52]];
-const START = new Date('2022-01-20T19:00:00.000Z');
+// change to new one movie a week order for 0-29 with 13 first
+const WEEK_ORDER = [13, 1, 22, 4, 7, 20, 0, 27, 17, 15, 14, 24, 16, 6, 28, 29, 5, 2, 3, 9, 8, 18, 11, 12, 10, 21, 19, 25, 26, 23];
+START = new Date('2022-09-19T19:00:00.000Z');
 const WEEK_NUM = Math.floor((Date.now() - START.valueOf())/weekInMilliseconds);
+console.log(WEEK_NUM);
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
@@ -58,8 +54,7 @@ function showMovies(data,list){
 function writeCurr(data){
     const containerEl = document.createElement('div');
     containerEl.classList.add('curr_container');
-    // curr = [data[TOY_WEEK_ORDER[TOY_WEEK_NUM][0]], data[TOY_WEEK_ORDER[TOY_WEEK_NUM][1]]];
-    curr = [data[WEEK_ORDER[WEEK_NUM][0]], data[WEEK_ORDER[WEEK_NUM][1]]];
+    curr = [data[WEEK_ORDER[WEEK_NUM]]];
     console.log(curr);
     curr.forEach(movie => {
         const {title, poster_path, vote_average, overview, release_date} = movie;
@@ -131,10 +126,6 @@ function getWatched(index, list){
         return "unwatched"
     }
     const seen = {};
-    // for(let i = 0;i<TOY_WEEK_NUM-1;i++){
-    //     seen[TOY_WEEK_ORDER[i][0]] = "ah";
-    //     seen[TOY_WEEK_ORDER[i][1]] = "oh";
-    // }
     for(let i = 0;i<WEEK_NUM;i++){
         seen[WEEK_ORDER[i][0]] = "ah";
         seen[WEEK_ORDER[i][1]] = "oh";
