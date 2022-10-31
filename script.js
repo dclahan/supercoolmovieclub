@@ -10,7 +10,7 @@ const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 const weekInMilliseconds = 7*24*60*60*1000; // == 604800000 ms
 
 // change to new one movie a week order for 0-29 with 13 first
-const WEEK_ORDER = [13, 1, 22, 4, 7, 20, 0, 27, 17, 15, 14, 24, 16, 6, 28, 29, 5, 2, 3, 9, 8, 18, 11, 12, 10, 21, 19, 25, 26, 23];
+const WEEK_ORDER = [13, 1, 22, 4, 7, 20, 0, 9, 17, 15, 24, 14, 29, 6, 28, 16, 5, 26, 3, 27, 8, 18, 11, 12, 10, 21, 19, 25, 2, 23];
 START = new Date('2022-09-19T19:00:00.000Z');
 const WEEK_NUM = Math.floor((Date.now() - START.valueOf())/weekInMilliseconds);
 console.log(WEEK_NUM);
@@ -127,8 +127,7 @@ function getWatched(index, list){
     }
     const seen = {};
     for(let i = 0;i<WEEK_NUM;i++){
-        seen[WEEK_ORDER[i][0]] = "ah";
-        seen[WEEK_ORDER[i][1]] = "oh";
+        seen[WEEK_ORDER[i]] = "ah";
     }
     if(index in seen){ 
         return "watched"
