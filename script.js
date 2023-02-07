@@ -9,7 +9,7 @@ const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 
 const weekInMilliseconds = 7*24*60*60*1000; // == 604800000 ms
 
-const WEEK_ORDER = [16, 23, 6, 11, 4, 19, 14, 21, 12, 9, 0, 3, 2, 1, 8, 13, 20, 15, 18, 5, 10, 7, 22, 17];
+const WEEK_ORDER = [16, 23, 6, 11, 4, 18, 14, 21, 12, 9, 0, 3, 2, 1, 8, 13, 20, 15, 19, 5, 10, 7, 22, 17];
 START = new Date('2023-01-16T19:00:00.000Z');
 const WEEK_NUM = Math.floor((Date.now() - START.valueOf())/weekInMilliseconds);
 console.log(WEEK_NUM);
