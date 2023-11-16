@@ -15,6 +15,7 @@ const ORDERSEED = "testseed";
 const WEEK_ORDER = getWeekOrder(NUMPEOPLE,NUMMOVIESEACH,ORDERSEED);
 START = new Date('2023-11-17T20:00:00.000Z'); 
 const WEEK_NUM = Math.floor((Date.now() - START.valueOf())/weekInMilliseconds);
+console.log(WEEK_NUM);
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
