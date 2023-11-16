@@ -9,10 +9,12 @@ const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 
 const weekInMilliseconds = 7*24*60*60*1000; // == 604800000 ms
 
-const WEEK_ORDER = [16, 23, 6, 11, 4, 18, 14, 21, 12, 9, 0, 3, 2, 1, 8, 13, 20, 15, 19, 5, 10, 7, 22, 17];
-START = new Date('2023-01-16T19:00:00.000Z');
+const NUMPEOPLE = 13;
+const NUMMOVIESEACH = 3;
+const ORDERSEED = "testseed";
+const WEEK_ORDER = getWeekOrder(NUMPEOPLE,NUMMOVIESEACH,ORDERSEED);
+START = new Date('2023-11-17T20:00:00.000Z'); 
 const WEEK_NUM = Math.floor((Date.now() - START.valueOf())/weekInMilliseconds);
-console.log(WEEK_NUM);
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
@@ -21,10 +23,52 @@ const search = document.getElementById('search');
 
 getList(LIST_URL);
 
+function shuffleArray(array, seed) {
+    Math.seedrandom(seed);
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function getWeekOrder(numPeople, numMovies, seed) {
+    // itll always be a 2d array with numbers 0->n*m-1 in order
+    // chunked into n rows of m numbers
+    // n == 2 m ==3 : [[0,1,2],[3,4,5]]
+    Math.seedrandom(seed);
+    const array2d = [];
+    for (let i = 0; i < numPeople; i++){
+        let k = i*numMovies;
+        const tmp = [];
+        for (let j = 0; j < numMovies; j++){
+            tmp.push(k+j);
+        }
+        array2d.push(tmp);
+    }
+    const items = [];
+    const v = [];
+    for (let i = 0; i < numPeople; i++){
+        shuffleArray(array2d[i], seed+i);
+        items.push(...array2d[i]);
+        const io = Math.random()/numMovies;
+        const o = [];
+        let oRange = 0.1/numMovies;
+        for (let k = 0; k < numMovies; k++){
+            // should be between -0.1/nM and 0.1/nM
+            o.push(Math.random() * 2 * oRange - oRange); 
+        }
+        for (let k = 0; k < numMovies; k++){
+            v.push(k/numMovies + io + o[k]);
+        }
+        
+    }
+    items.sort(function(a, b){return v[a] - v[b]});
+    return items;
+}
+
 
 function getMovies(url){
     fetch(url).then(res => res.json()).then(data => {
-        console.log(data.results);
         showMovies(data.results,0);
     })
 }
@@ -38,8 +82,7 @@ async function getList(url){
             }
         })
     }
-    console.log(dataResults);
-    showMovies(dataResults,WEEK_NUM > WEEK_ORDER.length ? 0 : 1);
+    showMovies(dataResults,WEEK_NUM > WEEK_ORDER.length || WEEK_NUM < 0 ? 0 : 1);
 }
 
 function showMovies(data,list){
@@ -54,7 +97,6 @@ function writeCurr(data){
     const containerEl = document.createElement('div');
     containerEl.classList.add('curr_container');
     curr = [data[WEEK_ORDER[WEEK_NUM]]];
-    console.log(curr);
     curr.forEach(movie => {
         const {title, poster_path, vote_average, overview, release_date} = movie;
         let dateStr = '';
