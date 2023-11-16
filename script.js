@@ -1,5 +1,5 @@
 // TMDB API 
-const MOVIE_LIST = 8236128; 
+const MOVIE_LIST = 8279595; 
 const API_KEY = 'api_key=47dfcb016e14d1379095405c11c88329';
 const BASE_URL = 'https://api.themoviedb.org/4';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
@@ -11,11 +11,10 @@ const weekInMilliseconds = 7*24*60*60*1000; // == 604800000 ms
 
 const NUMPEOPLE = 13;
 const NUMMOVIESEACH = 3;
-const ORDERSEED = "testseed";
+const ORDERSEED = "merriam.webster";
 const WEEK_ORDER = getWeekOrder(NUMPEOPLE,NUMMOVIESEACH,ORDERSEED);
 START = new Date('2023-11-17T20:00:00.000Z'); 
 const WEEK_NUM = Math.floor((Date.now() - START.valueOf())/weekInMilliseconds);
-console.log(WEEK_NUM);
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
