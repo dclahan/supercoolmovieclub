@@ -1,5 +1,5 @@
 // TMDB API 
-const MOVIE_LIST = 8279595; 
+const MOVIE_LIST = 8279609; 
 const API_KEY = 'api_key=47dfcb016e14d1379095405c11c88329';
 const BASE_URL = 'https://api.themoviedb.org/4';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
@@ -98,7 +98,7 @@ function writeCurr(data){
     containerEl.classList.add('curr_container');
     curr = [data[WEEK_ORDER[WEEK_NUM]]];
     curr.forEach(movie => {
-        const {title, poster_path, vote_average, overview, release_date} = movie;
+        const {title, poster_path, vote_average, overview, release_date, id} = movie;
         let dateStr = '';
         if(release_date){
             dateStr = ' (' + release_date.substring(0, 4) + ')';
@@ -115,6 +115,7 @@ function writeCurr(data){
 
             <div class="overview">
                 ${overview}
+                <a href="https://letterboxd.com/tmdb/${id}" target="_blank" rel="noopener noreferrer">Open in LetterBoxd</a>
             </div>
             `
             containerEl.appendChild(movieEl);
@@ -127,7 +128,7 @@ function writeMovies(data,list){
     containerEl.classList.add('list_container');
     let index = 0;
     data.forEach(movie => {
-        const {title, poster_path, vote_average, overview, release_date} = movie;
+        const {title, poster_path, vote_average, overview, release_date, id} = movie;
         let dateStr = '';
         if(release_date){
             dateStr = ' (' + release_date.substring(0, 4) + ')';
@@ -144,6 +145,7 @@ function writeMovies(data,list){
 
             <div class="overview">
                 ${overview}
+                <a href="https://letterboxd.com/tmdb/${id}" target="_blank" rel="noopener noreferrer">Open in LetterBoxd</a>
             </div>
             `
             containerEl.appendChild(movieEl);
