@@ -144,7 +144,7 @@ function writeMovies(data,list){
             </div>
 
             <div class="overview">
-                ${overview}
+                ${overview.substring(0,150)}...
                 <a href="https://letterboxd.com/tmdb/${id}" target="_blank" rel="noopener noreferrer">Open in LetterBoxd</a>
             </div>
             `
