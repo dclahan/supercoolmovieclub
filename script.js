@@ -139,7 +139,7 @@ function writeMovies(data,list){
         <img src="${IMG_URL + poster_path}" alt="${title}" class="${getWatched(index,list)}">
 
             <div class="movie-info">
-                <h3>${title + dateStr}</h3>
+                <h5>${title + dateStr}</h5>
                 <span class="${getColor(vote_average)}">${vote_average}</span>
             </div>
 

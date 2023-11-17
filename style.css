@@ -100,7 +100,7 @@ main{
 
 @media (min-width: 320px) and (max-width: 999px) {
     .movie{
-        width: 30%;
+        width: 25%;
         margin: 0.5rem;
         border-radius: 3px;
         box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.1);
@@ -147,10 +147,15 @@ main{
     margin-top: 0;
 }
 
+.movie-info h5{
+    margin-top: 0;
+}
+
 .movie-info span{
     background-color: var(--primary-color);
     padding: 0.25rem 0.5rem;
     border-radius: 3px;
+    font-size: small;
     font-weight: bold;
 }
 
@@ -172,6 +177,7 @@ main{
     right: 0;
     bottom: 0;
     background-color: #fff;
+    font-size: smaller;
     padding: 1rem;
     max-height: 100%;
     transform: translateY(101%);
