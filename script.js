@@ -16,6 +16,8 @@ const WEEK_ORDER = getWeekOrder(NUMPEOPLE,NUMMOVIESEACH,ORDERSEED);
 START = new Date('2023-11-17T20:00:00.000Z'); 
 const WEEK_NUM = Math.floor((Date.now() - START.valueOf())/weekInMilliseconds);
 
+const MEMBERS = ['cal','robert','siena','alex','dolan','ethan','flynn','sween','henry','gianni','danny','joe','luna'];
+
 const main = document.getElementById('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
@@ -97,6 +99,8 @@ function writeCurr(data){
     const containerEl = document.createElement('div');
     containerEl.classList.add('curr_container');
     curr = [data[WEEK_ORDER[WEEK_NUM]]];
+    const member = MEMBERS[WEEK_ORDER[WEEK_NUM]/3];  
+
     curr.forEach(movie => {
         const {title, poster_path, vote_average, overview, release_date, id} = movie;
         let dateStr = '';
@@ -107,6 +111,9 @@ function writeCurr(data){
         movieEl.classList.add('curr');
         movieEl.innerHTML = `
         <img src="${IMG_URL + poster_path}" alt="${title}" class="unwatched">
+            <div class="curator">
+                <img src = "img/${member}.png" alt = "${member}'s pick">
+            </div>
 
             <div class="movie-info">
                 <h3>${title + dateStr}</h3>
@@ -114,8 +121,10 @@ function writeCurr(data){
             </div>
 
             <div class="overview">
-                ${overview}
                 <a href="https://letterboxd.com/tmdb/${id}" target="_blank" rel="noopener noreferrer">Open in LetterBoxd</a>
+                <p>
+                ${overview}
+                </p>
             </div>
             `
             containerEl.appendChild(movieEl);
@@ -144,8 +153,10 @@ function writeMovies(data,list){
             </div>
 
             <div class="overview">
-                ${overview.substring(0,150)}...
                 <a href="https://letterboxd.com/tmdb/${id}" target="_blank" rel="noopener noreferrer">Open in LetterBoxd</a>
+                <p>
+                ${overview.substring(0,150)}...
+                </p>
             </div>
             `
             containerEl.appendChild(movieEl);

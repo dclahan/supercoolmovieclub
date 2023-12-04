@@ -84,6 +84,7 @@ main{
     background-color: var(--secondary-color);
     position: relative;
     overflow: hidden;
+    background-image: linear-gradient(to top, rgba(0,0,0,0) 20%, rgba(0,0,0,1));
 }
 
 .curr:hover{
@@ -187,3 +188,23 @@ main{
 .movie:hover .overview{
     transform: translateY(0);
 }
+
+.curator {
+    position: absolute;
+    top: 0px;
+    right: 50px;
+    padding: 5px 10px;
+    background: radial-gradient(var(--third-color),transparent);
+    border-radius: 60%;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in;
+  }
+
+  .curator img{
+    width: 60%;
+  }
+  
+  .curr:hover .curator{
+    transform: translateY(-101%);
+}
+
