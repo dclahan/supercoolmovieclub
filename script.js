@@ -1,5 +1,5 @@
 // TMDB API 
-const MOVIE_LIST = 8279609; 
+const MOVIE_LIST = 8283524; 
 const API_KEY = 'api_key=47dfcb016e14d1379095405c11c88329';
 const BASE_URL = 'https://api.themoviedb.org/4';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
