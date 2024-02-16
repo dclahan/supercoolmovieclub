@@ -99,7 +99,7 @@ function writeCurr(data){
     const containerEl = document.createElement('div');
     containerEl.classList.add('curr_container');
     curr = [data[WEEK_ORDER[WEEK_NUM]]];
-    const member = MEMBERS[WEEK_ORDER[WEEK_NUM]/3];  
+    const member = MEMBERS[Math.floor(WEEK_ORDER[WEEK_NUM]/3)];  
 
     curr.forEach(movie => {
         const {title, poster_path, vote_average, overview, release_date, id} = movie;
